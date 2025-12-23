@@ -1,17 +1,17 @@
 # Nirmaha
 
-Equipment Rental Management System built on [Frappe Framework](https://frappeframework.com).
+Peer-to-peer rental marketplace for props, party supplies, and event inventory. Built on [Frappe Framework](https://frappeframework.com) with a South Indian festive theme.
 
 ## Features
 
-- **Equipment Inventory**: Track all rental equipment with QR codes, photos, and maintenance history
-- **Customer Portal**: Self-service booking, availability checking, and payment
-- **Flexible Pricing**: Hourly, daily, weekly, and monthly rates with automatic best-rate calculation
-- **Booking Management**: Reservations, checkouts, returns, and damage reports
-- **Deposit Handling**: Security deposit collection and refund tracking
-- **Invoicing**: Automatic invoice generation with Razorpay integration
-- **Notifications**: SMS and email alerts for pickups, returns, and overdue items
-- **Reports**: Revenue, utilization, and inventory reports
+- **Multi-Vendor Marketplace**: Listers can add their own inventory, set prices, earn money
+- **Beautiful Theme**: South Indian festive design (rangoli, lotuses, banana leaves)
+- **Geotagging & Delivery**: Location-based search, delivery within 50-mile radius
+- **Stripe Payments**: Secure payments with Stripe Connect for multi-vendor payouts
+- **Platform Fees**: 10% fee on partner network listings
+- **Refundable Deposits**: Calculated based on order value
+- **DIY Videos**: Attach how-to videos to listings
+- **Reviews & Ratings**: Customer reviews for items and listers
 
 ## Quick Start
 
@@ -48,8 +48,9 @@ cp .env.example .env
 ```
 
 Key settings:
-- `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` - Payment gateway
-- `SMS_API_KEY` - SMS notifications
+- `STRIPE_PUBLISHABLE_KEY` / `STRIPE_SECRET_KEY` - Payment gateway
+- `STRIPE_CONNECT_CLIENT_ID` - Multi-vendor payouts
+- `TWILIO_*` - SMS notifications (US market)
 - `SITE_NAME` - Your Frappe site name
 
 ## Documentation

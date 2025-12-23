@@ -2,241 +2,335 @@
 
 ## Overview
 
-Equipment rental management system for sister's rental business. March 2025 deadline for community showcase.
+**Nirmaha** is a peer-to-peer rental marketplace for props, party supplies, and event inventory. Built on Frappe Framework with a South Indian festive theme (rangoli, lotuses, banana leaves, subtle colors).
 
-## Core Workflows
+| Attribute | Value |
+|-----------|-------|
+| **Platform Type** | Peer-to-peer rental marketplace |
+| **Owner** | Shilpa |
+| **IT Admin** | Rajesh |
+| **Theme** | South Indian festive (rangoli, lotuses, banana leaves) |
+| **Target Market** | US-based (50-mile delivery radius) |
+| **Payment Gateway** | Stripe |
 
-### 1. Equipment Lifecycle
+## User Roles
 
-```
-Purchase → Available → Rented → Returned → Available
-                ↓           ↓
-           Maintenance   Damaged → Repair → Available
-                              ↓
-                           Retired
-```
+| Role | Description | Permissions |
+|------|-------------|-------------|
+| **Site Owner** | Shilpa - controls most listings, day-to-day operations | Full access to all features |
+| **IT Admin** | Rajesh - technical support, not daily operations | System configuration, no operational tasks |
+| **Listers** | Friends/peers who add their own listings | Create/manage own listings, view own earnings |
+| **Renters/Customers** | General users who rent items | Browse, book, pay, leave reviews |
 
-### 2. Rental Flow
+## Core Features
 
-```
-Customer Inquiry
-     ↓
-Check Availability
-     ↓
-Create Booking (Reserved)
-     ↓
-Collect Deposit
-     ↓
-Checkout (Equipment handed over)
-     ↓
-Return (Equipment received back)
-     ↓
-Inspection
-     ↓
-├── No Damage → Full deposit refund
-└── Damage → Damage Report → Deduct from deposit → Partial refund
-     ↓
-Generate Invoice
-     ↓
-Payment (if balance due)
-```
+### 1. Item Listings
+- Props (decorations, backdrops, staging items)
+- Add-ons (lights, figurines, accessories)
+- Party supplies
+- DIY/how-to videos attached to items
+- Multiple images per listing
+- Condition documentation
+
+### 2. Multi-Vendor Marketplace
+- Listers can add their own inventory
+- Each lister has their own profile/storefront
+- Platform takes 10% fee on partner network listings
+- Listers set their own prices
+
+### 3. Geotagging & Delivery
+- Location info on all listings
+- Delivery within 50-mile radius
+- Delivery cost calculator based on distance
+- Pickup option available
+
+### 4. Payments & Fees
+- Stripe integration for payments
+- 10% platform fee on partner listings
+- Refundable deposit based on total order value
+- Multi-item orders from different locations supported
 
 ## DocType Specifications
 
-### Rental Equipment
+### Masters
 
+#### Nirmaha Category
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| equipment_name | Data | Yes | Display name |
-| equipment_code | Data | Yes | Unique code (auto-generated) |
-| category | Link: Rental Category | Yes | Equipment category |
-| status | Select | Yes | Available/Rented/Maintenance/Retired |
-| location | Link: Rental Location | No | Current warehouse location |
-| purchase_date | Date | No | When purchased |
-| purchase_price | Currency | No | Original cost |
-| hourly_rate | Currency | No | Rental rate per hour |
-| daily_rate | Currency | Yes | Rental rate per day |
-| weekly_rate | Currency | No | Rental rate per week |
-| monthly_rate | Currency | No | Rental rate per month |
-| deposit_amount | Currency | Yes | Security deposit required |
-| description | Text Editor | No | Detailed description |
-| images | Attach | No | Equipment photos |
-| qr_code | Attach | No | Auto-generated QR code |
-| condition_notes | Text | No | Current condition |
+| category_name | Data | Yes | Category name |
+| parent_category | Link: Nirmaha Category | No | Parent for subcategories |
+| image | Attach Image | No | Category image |
+| description | Text | No | Category description |
 
-### Rental Customer
-
+#### Nirmaha Settings (Single)
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| customer_name | Data | Yes | Full name |
-| phone | Data | Yes | Primary phone (for SMS) |
-| email | Data | No | Email address |
-| id_type | Select | Yes | Aadhaar/PAN/Driving License |
-| id_number | Data | Yes | ID document number |
-| id_proof | Attach | Yes | Scanned ID document |
+| platform_name | Data | Yes | "Nirmaha" |
+| platform_fee_percent | Percent | Yes | Default 10% |
+| delivery_radius_miles | Int | Yes | Default 50 |
+| min_deposit_percent | Percent | Yes | Minimum deposit % |
+| stripe_publishable_key | Data | Yes | Stripe public key |
+| stripe_secret_key | Password | Yes | Stripe secret key |
+| default_currency | Link: Currency | Yes | USD |
+
+### Listings
+
+#### Nirmaha Lister
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| user | Link: User | Yes | Linked user account |
+| lister_name | Data | Yes | Display name |
+| phone | Data | Yes | Contact phone |
+| email | Data | Yes | Contact email |
 | address | Text | Yes | Full address |
 | city | Data | Yes | City |
-| pincode | Data | Yes | PIN code |
-| total_rentals | Int | No | Count of rentals (auto) |
-| total_revenue | Currency | No | Total spent (auto) |
-| blacklisted | Check | No | Block this customer |
-| blacklist_reason | Text | No | Why blacklisted |
+| state | Data | Yes | State |
+| zip_code | Data | Yes | ZIP code |
+| latitude | Float | No | Geo coordinate |
+| longitude | Float | No | Geo coordinate |
+| bio | Text | No | About the lister |
+| profile_image | Attach Image | No | Profile photo |
+| is_partner | Check | No | Partner network member (10% fee applies) |
+| stripe_account_id | Data | No | Stripe Connect account |
+| total_listings | Int | No | Count (auto) |
+| total_earnings | Currency | No | Lifetime earnings (auto) |
+| rating | Float | No | Average rating (auto) |
 
-### Rental Booking
-
+#### Nirmaha Item
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| booking_id | Data | Yes | Auto-generated ID |
-| customer | Link: Rental Customer | Yes | Customer |
-| status | Select | Yes | Reserved/Confirmed/Checked Out/Returned/Cancelled |
-| booking_date | Date | Yes | When booking was made |
-| start_date | Date | Yes | Rental start date |
-| end_date | Date | Yes | Rental end date |
-| equipment_items | Table: Booking Item | Yes | List of equipment |
-| rate_type | Select | Yes | Hourly/Daily/Weekly/Monthly |
-| subtotal | Currency | No | Calculated total |
-| discount_percent | Percent | No | Discount applied |
-| discount_amount | Currency | No | Discount in currency |
-| tax_amount | Currency | No | GST if applicable |
+| item_name | Data | Yes | Display name |
+| item_code | Data | Yes | Unique code (auto) |
+| lister | Link: Nirmaha Lister | Yes | Who owns this item |
+| category | Link: Nirmaha Category | Yes | Item category |
+| status | Select | Yes | Available/Rented/Unavailable |
+| description | Text Editor | Yes | Full description |
+| daily_rate | Currency | Yes | Price per day |
+| weekly_rate | Currency | No | Price per week (discount) |
+| deposit_amount | Currency | Yes | Security deposit |
+| quantity | Int | Yes | How many available |
+| condition | Select | Yes | New/Like New/Good/Fair |
+| location_city | Data | Yes | Item location city |
+| location_state | Data | Yes | Item location state |
+| location_zip | Data | Yes | Item location ZIP |
+| latitude | Float | No | Geo coordinate |
+| longitude | Float | No | Geo coordinate |
+| images | Table: Nirmaha Item Image | Yes | Multiple images |
+| how_to_video | Data | No | YouTube/video URL |
+| tags | Table MultiSelect | No | Searchable tags |
+
+#### Nirmaha Item Image (Child Table)
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| image | Attach Image | Yes | Item photo |
+| is_primary | Check | No | Main display image |
+| caption | Data | No | Image caption |
+
+### Transactions
+
+#### Nirmaha Booking
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| booking_id | Data | Yes | Auto-generated |
+| customer | Link: User | Yes | Who is renting |
+| status | Select | Yes | Pending/Confirmed/Picked Up/Returned/Cancelled |
+| booking_date | Date | Yes | When booked |
+| start_date | Date | Yes | Rental start |
+| end_date | Date | Yes | Rental end |
+| items | Table: Nirmaha Booking Item | Yes | Items in this booking |
+| delivery_type | Select | Yes | Pickup/Delivery |
+| delivery_address | Text | No | If delivery |
+| delivery_fee | Currency | No | Calculated delivery cost |
+| subtotal | Currency | No | Items total |
+| platform_fee | Currency | No | 10% of partner items |
+| deposit_amount | Currency | No | Total deposit required |
 | grand_total | Currency | No | Final amount |
-| deposit_required | Currency | No | Total deposit needed |
-| notes | Text | No | Special instructions |
+| stripe_payment_intent | Data | No | Stripe reference |
+| notes | Text | No | Special requests |
 
-### Rental Checkout
-
+#### Nirmaha Booking Item (Child Table)
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| checkout_id | Data | Yes | Auto-generated |
-| booking | Link: Rental Booking | Yes | Related booking |
-| checkout_datetime | Datetime | Yes | When equipment handed over |
-| checked_out_by | Link: User | Yes | Staff who processed |
-| condition_at_checkout | Text | No | Equipment condition notes |
-| photos_at_checkout | Attach | No | Photos of equipment |
-| customer_signature | Signature | No | Customer acknowledgment |
-| deposit_collected | Currency | No | Deposit amount received |
-| deposit_payment_mode | Select | No | Cash/UPI/Card/Bank Transfer |
+| item | Link: Nirmaha Item | Yes | Item being rented |
+| lister | Link: Nirmaha Lister | Yes | Item owner (auto-filled) |
+| quantity | Int | Yes | How many |
+| daily_rate | Currency | Yes | Rate at time of booking |
+| days | Int | Yes | Number of days |
+| line_total | Currency | Yes | Calculated |
 
-### Rental Return
-
+#### Nirmaha Payout
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| return_id | Data | Yes | Auto-generated |
-| booking | Link: Rental Booking | Yes | Related booking |
-| checkout | Link: Rental Checkout | Yes | Related checkout |
-| return_datetime | Datetime | Yes | When returned |
-| received_by | Link: User | Yes | Staff who received |
-| condition_at_return | Text | No | Condition notes |
-| photos_at_return | Attach | No | Photos of equipment |
-| has_damage | Check | No | Damage found? |
-| damage_report | Link: Rental Damage Report | No | If damaged |
-| late_hours | Float | No | Hours past due |
-| late_fee | Currency | No | Late return fee |
+| lister | Link: Nirmaha Lister | Yes | Who gets paid |
+| period_start | Date | Yes | Payout period start |
+| period_end | Date | Yes | Payout period end |
+| gross_amount | Currency | Yes | Total before fees |
+| platform_fee | Currency | Yes | 10% deducted |
+| net_amount | Currency | Yes | Amount to pay |
+| status | Select | Yes | Pending/Paid |
+| stripe_transfer_id | Data | No | Stripe reference |
+| paid_date | Date | No | When paid |
 
-### Rental Damage Report
+### Reviews
 
+#### Nirmaha Review
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| damage_id | Data | Yes | Auto-generated |
-| booking | Link: Rental Booking | Yes | Related booking |
-| equipment | Link: Rental Equipment | Yes | Damaged equipment |
-| reported_datetime | Datetime | Yes | When reported |
-| damage_description | Text | Yes | What's damaged |
-| damage_photos | Attach | Yes | Photo evidence |
-| repair_cost_estimate | Currency | No | Estimated repair cost |
-| deduct_from_deposit | Currency | No | Amount to deduct |
-| customer_acknowledged | Check | No | Customer agreed? |
+| booking | Link: Nirmaha Booking | Yes | Related booking |
+| reviewer | Link: User | Yes | Who wrote review |
+| reviewee_type | Select | Yes | Item/Lister/Renter |
+| item | Link: Nirmaha Item | No | If reviewing item |
+| lister | Link: Nirmaha Lister | No | If reviewing lister |
+| rating | Int | Yes | 1-5 stars |
+| review_text | Text | No | Written review |
 
-### Rental Invoice
+## Workflows
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| invoice_id | Data | Yes | Auto-generated |
-| booking | Link: Rental Booking | Yes | Related booking |
-| customer | Link: Rental Customer | Yes | Customer |
-| invoice_date | Date | Yes | Invoice date |
-| due_date | Date | No | Payment due date |
-| rental_amount | Currency | Yes | Base rental |
-| late_fee | Currency | No | Late return charges |
-| damage_charges | Currency | No | Damage deductions |
-| deposit_collected | Currency | No | Deposit paid |
-| deposit_refunded | Currency | No | Deposit returned |
-| deposit_adjusted | Currency | No | Deposit used for charges |
-| subtotal | Currency | No | Before tax |
-| tax_amount | Currency | No | GST |
-| grand_total | Currency | Yes | Total payable |
-| amount_paid | Currency | No | Amount received |
-| balance | Currency | No | Outstanding |
-| status | Select | Yes | Draft/Unpaid/Paid/Cancelled |
-
-## Pricing Logic
-
-### Rate Selection
-```python
-def calculate_rental_price(equipment, duration_days, rate_type="auto"):
-    if rate_type == "auto":
-        # Auto-select best rate for customer
-        if duration_days >= 30 and equipment.monthly_rate:
-            months = ceil(duration_days / 30)
-            return months * equipment.monthly_rate
-        elif duration_days >= 7 and equipment.weekly_rate:
-            weeks = ceil(duration_days / 7)
-            return weeks * equipment.weekly_rate
-        else:
-            return duration_days * equipment.daily_rate
-    # ... explicit rate selection
+### Booking Flow
+```
+Customer browses items
+     ↓
+Add to cart (multiple items, multiple listers)
+     ↓
+Select delivery/pickup
+     ↓
+Delivery cost calculated (if applicable)
+     ↓
+Deposit calculated (based on total value)
+     ↓
+Pay via Stripe (items + delivery + deposit)
+     ↓
+Booking confirmed → Notifications sent
+     ↓
+Pickup/Delivery on start date
+     ↓
+Return on end date
+     ↓
+Inspection
+     ↓
+├── No issues → Full deposit refund
+└── Issues → Claim filed → Deposit adjusted
+     ↓
+Payout to listers (minus 10% platform fee)
 ```
 
-### Late Fees
-- Grace period: 2 hours
-- After grace: 10% of daily rate per hour
-- Max late fee: 2x daily rate
+### Lister Onboarding
+```
+Sign up / Login
+     ↓
+Complete lister profile
+     ↓
+Connect Stripe account (Stripe Connect)
+     ↓
+Add first listing
+     ↓
+Listing goes live
+     ↓
+Receive bookings → Fulfill → Get paid
+```
 
-### Deposit Rules
-- Minimum: 1 day rental amount
-- Maximum: 50% of equipment value
-- Refund within 24 hours of return (if no damage)
+## Delivery Cost Calculator
+
+```python
+def calculate_delivery_cost(origin_zip, destination_zip):
+    """
+    Calculate delivery fee based on distance.
+    Uses ZIP code to estimate distance.
+    """
+    distance_miles = get_distance(origin_zip, destination_zip)
+
+    if distance_miles > 50:
+        return None  # Out of delivery range
+
+    # Base fee + per-mile charge
+    base_fee = 10.00
+    per_mile = 0.50
+
+    return base_fee + (distance_miles * per_mile)
+```
+
+## Platform Fee Logic
+
+```python
+def calculate_platform_fee(booking_items):
+    """
+    10% platform fee only on partner network listings.
+    Owner (Shilpa) listings have no fee.
+    """
+    total_fee = 0
+
+    for item in booking_items:
+        if item.lister.is_partner:
+            total_fee += item.line_total * 0.10
+
+    return total_fee
+```
+
+## Deposit Calculation
+
+```python
+def calculate_deposit(booking_items):
+    """
+    Deposit based on total order value.
+    Minimum 20%, maximum 50% of item value.
+    """
+    total_value = sum(item.line_total for item in booking_items)
+
+    # Tiered deposit
+    if total_value < 100:
+        return total_value * 0.50  # 50% for small orders
+    elif total_value < 500:
+        return total_value * 0.30  # 30% for medium
+    else:
+        return total_value * 0.20  # 20% for large orders
+```
+
+## Theme & Design
+
+South Indian festive theme:
+- **Colors**: Warm yellows, oranges, deep reds, gold accents
+- **Patterns**: Rangoli-inspired borders, lotus motifs
+- **Elements**: Banana leaf textures, traditional kolam patterns
+- **Typography**: Clean modern fonts with decorative accents
+
+## Stripe Integration
+
+### Required Stripe Features
+1. **Stripe Connect** - For multi-vendor payouts to listers
+2. **Payment Intents** - For secure customer payments
+3. **Refunds** - For deposit returns and cancellations
+4. **Transfers** - For automated lister payouts
+
+### Webhook Events
+- `payment_intent.succeeded` - Mark booking as paid
+- `payment_intent.payment_failed` - Handle failed payment
+- `transfer.created` - Track lister payout
+- `charge.refunded` - Track deposit refund
 
 ## Notifications
 
-### SMS Templates
+| Event | Channel | Recipient |
+|-------|---------|-----------|
+| New booking | Email + SMS | Lister |
+| Booking confirmed | Email | Customer |
+| Pickup reminder | Email + SMS | Customer |
+| Return reminder | Email + SMS | Customer |
+| Payout sent | Email | Lister |
+| New review | Email | Lister |
 
-| Event | Template |
-|-------|----------|
-| Booking Confirmed | "Your booking #{booking_id} is confirmed. Pickup: {date} at {location}. Deposit: Rs{amount}" |
-| Pickup Reminder | "Reminder: Pickup tomorrow for booking #{booking_id}. Time: {time}. Bring ID proof." |
-| Return Reminder | "Reminder: Return due tomorrow for booking #{booking_id}. Avoid late fees!" |
-| Overdue Alert | "URGENT: Your rental #{booking_id} is overdue. Late fees applying. Return ASAP." |
-| Payment Received | "Payment of Rs{amount} received for invoice #{invoice_id}. Thank you!" |
+## Reports
 
-## Reports Required
+1. **Platform Dashboard**: Total bookings, revenue, active listings
+2. **Lister Earnings**: Per-lister revenue and payouts
+3. **Popular Items**: Most rented items
+4. **Geographic Heat Map**: Rental activity by location
+5. **Customer Analytics**: Repeat customers, average order value
 
-1. **Daily Operations**: Today's pickups, returns, overdue
-2. **Equipment Utilization**: Usage % per equipment
-3. **Revenue Report**: Daily/Weekly/Monthly revenue
-4. **Customer Report**: Top customers, blacklisted
-5. **Inventory Report**: Equipment by status, maintenance due
+## Future Enhancements
 
-## Permissions Matrix
-
-| Role | Equipment | Booking | Checkout/Return | Invoice | Settings |
-|------|-----------|---------|-----------------|---------|----------|
-| Administrator | CRUD | CRUD | CRUD | CRUD | CRUD |
-| Manager | CRUD | CRUD | CRUD | CRUD | Read |
-| Staff | Read | Create/Read | CRUD | Read | None |
-| Customer (Portal) | Read | Create/Read own | None | Read own | None |
-
-## Integration Points
-
-### Razorpay
-- Collect deposits online
-- Invoice payments
-- Webhook for payment confirmation
-
-### SMS (MSG91)
-- Transactional SMS for all notifications
-- DLT registration required for India
-
-### QR Codes
-- Generate QR for each equipment
-- QR links to equipment detail page
-- Staff can scan to pull up equipment info
+- Mobile app (React Native)
+- In-app messaging between listers and renters
+- Wishlist / favorites
+- Promotional codes / discounts
+- Subscription plans for frequent renters
+- Insurance integration for high-value items

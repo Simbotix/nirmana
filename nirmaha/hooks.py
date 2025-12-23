@@ -1,7 +1,7 @@
 app_name = "nirmaha"
 app_title = "Nirmaha"
 app_publisher = "Simbotix"
-app_description = "Equipment Rental Management System"
+app_description = "Peer-to-peer rental marketplace for props, party supplies, and event inventory"
 app_email = "rajesh@simbotix.com"
 app_license = "MIT"
 app_logo_url = "/assets/nirmaha/images/logo.png"

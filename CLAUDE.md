@@ -59,18 +59,19 @@ This is a **family project** with a March deadline for community showcase.
 ## Platform Fee Logic
 
 ```python
-# 10% platform fee ONLY on partner network listings
-# Owner (Shilpa) listings have NO fee
-if item.lister.is_partner:
+# 10% platform fee on ALL lister transactions
+# Only Shilpa (is_owner=True) keeps 100%
+if not item.lister.is_owner:
     platform_fee = item.line_total * 0.10
 ```
 
 ## Key Features
 
 ### 1. Multi-Vendor Marketplace
-- Listers add their own inventory
+- Listers (friends/peers) add their own inventory
 - Each lister has their own profile/storefront
-- 10% platform fee on partner listings
+- **10% platform fee on ALL lister transactions** (except Shilpa)
+- All listers coordinate with Shilpa
 - Listers set their own prices
 
 ### 2. Geotagging & Delivery

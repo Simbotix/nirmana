@@ -33,10 +33,11 @@
 - Condition documentation
 
 ### 2. Multi-Vendor Marketplace
-- Listers can add their own inventory
+- Listers (friends/peers) can add their own inventory
 - Each lister has their own profile/storefront
-- Platform takes 10% fee on partner network listings
+- Platform takes **10% fee on ALL lister transactions** (except Shilpa's own listings)
 - Listers set their own prices
+- All listers coordinate with Shilpa
 
 ### 3. Geotagging & Delivery
 - Location info on all listings
@@ -90,7 +91,7 @@
 | longitude | Float | No | Geo coordinate |
 | bio | Text | No | About the lister |
 | profile_image | Attach Image | No | Profile photo |
-| is_partner | Check | No | Partner network member (10% fee applies) |
+| is_owner | Check | No | Platform owner (Shilpa) - no fees |
 | stripe_account_id | Data | No | Stripe Connect account |
 | total_listings | Int | No | Count (auto) |
 | total_earnings | Currency | No | Lifetime earnings (auto) |
@@ -254,13 +255,13 @@ def calculate_delivery_cost(origin_zip, destination_zip):
 ```python
 def calculate_platform_fee(booking_items):
     """
-    10% platform fee only on partner network listings.
-    Owner (Shilpa) listings have no fee.
+    10% platform fee on ALL lister transactions.
+    Only exception: Shilpa (is_owner=True) keeps 100%.
     """
     total_fee = 0
 
     for item in booking_items:
-        if item.lister.is_partner:
+        if not item.lister.is_owner:
             total_fee += item.line_total * 0.10
 
     return total_fee

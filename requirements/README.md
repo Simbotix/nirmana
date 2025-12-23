@@ -9,6 +9,7 @@ This folder contains all requirements and setup documentation for the Nirmaha pr
 | [BUSINESS-REQUIREMENTS.md](./BUSINESS-REQUIREMENTS.md) | Platform overview, features, workflows |
 | [DOCTYPES.md](./DOCTYPES.md) | Complete field-level DocType specifications |
 | [BUSINESS-LOGIC.md](./BUSINESS-LOGIC.md) | Calculation logic, APIs, notifications |
+| [TIME-ESTIMATE.md](./TIME-ESTIMATE.md) | Development hours & cost estimate |
 | [STAGING-SETUP.md](./STAGING-SETUP.md) | How to setup staging site on press.appz.studio |
 | [requirement-discussion.md](./requirement-discussion.md) | Original discussion with Shilpa (includes moodboard) |
 

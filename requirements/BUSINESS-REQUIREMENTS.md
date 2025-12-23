@@ -33,7 +33,8 @@
 - Condition documentation
 
 ### 2. Multi-Vendor Marketplace
-- Listers (friends/peers) can add their own inventory
+- **Invite-only listers** - only Shilpa (site owner) can create lister accounts
+- No self-signup for listers (controlled onboarding)
 - Each lister has their own profile/storefront
 - Platform takes **10% fee on ALL lister transactions** (except Shilpa's own listings)
 - Listers set their own prices
@@ -215,15 +216,19 @@ Inspection
 Payout to listers (minus 10% platform fee)
 ```
 
-### Lister Onboarding
+### Lister Onboarding (Invite-Only)
 ```
-Sign up / Login
+Shilpa creates Nirmaha Lister account
      ↓
-Complete lister profile
+System sends invite email to lister
      ↓
-Connect Stripe account (Stripe Connect)
+Lister clicks link → Sets password
      ↓
-Add first listing
+Lister completes profile
+     ↓
+Lister connects Stripe account (Stripe Connect)
+     ↓
+Lister adds first listing
      ↓
 Listing goes live
      ↓

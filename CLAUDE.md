@@ -68,7 +68,7 @@ if not item.lister.is_owner:
 ## Key Features
 
 ### 1. Multi-Vendor Marketplace
-- Listers (friends/peers) add their own inventory
+- **Invite-only listers** - only Shilpa can create lister accounts
 - Each lister has their own profile/storefront
 - **10% platform fee on ALL lister transactions** (except Shilpa)
 - All listers coordinate with Shilpa
@@ -258,12 +258,12 @@ def get_lister_earnings(lister_id):
 9. Inspection → Deposit refunded or adjusted
 10. Payout to listers (minus 10% platform fee)
 
-### Lister Onboarding
-1. Sign up / Login
-2. Complete lister profile
-3. Connect Stripe account (Stripe Connect)
-4. Add first listing
-5. Listing goes live
+### Lister Onboarding (Invite-Only)
+1. Shilpa creates Nirmaha Lister account
+2. System sends invite email to lister
+3. Lister clicks link → Sets password
+4. Lister completes profile + connects Stripe
+5. Add first listing → Goes live
 6. Receive bookings → Fulfill → Get paid
 
 ## ClickUp Integration

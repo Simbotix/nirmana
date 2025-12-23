@@ -56,6 +56,17 @@ This is a **family project** with a March deadline for community showcase.
 |---------|---------|
 | `Nirmaha Review` | Customer reviews for items/listers |
 
+### Messaging
+| DocType | Purpose |
+|---------|---------|
+| `Nirmaha Conversation` | Message thread between renter and lister |
+| `Nirmaha Message` | Individual messages (child table) |
+
+### Wishlist
+| DocType | Purpose |
+|---------|---------|
+| `Nirmaha Wishlist Item` | Saved/favorited items per user |
+
 ## Platform Fee Logic
 
 ```python
@@ -91,6 +102,15 @@ if not item.lister.is_owner:
 - View bookings and earnings
 - Connect Stripe account for payouts
 - See reviews
+
+### 5. In-App Messaging
+- Renters message listers about items
+- Message threads linked to items/bookings
+- Email notifications for new messages
+
+### 6. Wishlist / Favorites
+- Save items to wishlist
+- Notify when favorited items become available
 
 ## Tech Stack
 

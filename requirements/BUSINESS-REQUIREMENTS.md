@@ -52,6 +52,17 @@
 - Refundable deposit based on total order value
 - Multi-item orders from different locations supported
 
+### 5. In-App Messaging
+- Renters can message listers about items
+- Listers can respond to inquiries
+- Message thread linked to item/booking
+- Email notifications for new messages
+
+### 6. Wishlist / Favorites
+- Renters can save items to wishlist
+- View all favorited items in one place
+- Get notified when favorited items become available
+
 ## DocType Specifications
 
 ### Masters
@@ -185,6 +196,38 @@
 | lister | Link: Nirmaha Lister | No | If reviewing lister |
 | rating | Int | Yes | 1-5 stars |
 | review_text | Text | No | Written review |
+
+### Messaging
+
+#### Nirmaha Conversation
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| conversation_id | Data | Yes | Auto-generated |
+| item | Link: Nirmaha Item | No | Related item (if inquiry) |
+| booking | Link: Nirmaha Booking | No | Related booking (if exists) |
+| renter | Link: User | Yes | Customer in conversation |
+| lister | Link: Nirmaha Lister | Yes | Lister in conversation |
+| last_message_at | Datetime | No | For sorting |
+| is_read_by_renter | Check | No | Renter read status |
+| is_read_by_lister | Check | No | Lister read status |
+
+#### Nirmaha Message (Child Table)
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| sender | Link: User | Yes | Who sent message |
+| message | Text | Yes | Message content |
+| sent_at | Datetime | Yes | Timestamp |
+| is_read | Check | No | Read status |
+
+### Wishlist
+
+#### Nirmaha Wishlist Item
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| user | Link: User | Yes | Who saved the item |
+| item | Link: Nirmaha Item | Yes | Saved item |
+| added_at | Datetime | Yes | When added |
+| notify_available | Check | No | Notify when available |
 
 ## Workflows
 
@@ -335,8 +378,6 @@ South Indian festive theme:
 ## Future Enhancements
 
 - Mobile app (React Native)
-- In-app messaging between listers and renters
-- Wishlist / favorites
 - Promotional codes / discounts
 - Subscription plans for frequent renters
 - Insurance integration for high-value items

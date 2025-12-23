@@ -1,4 +1,4 @@
-# Nirmaha
+# Nirmana
 
 Peer-to-peer rental marketplace for props, party supplies, and event inventory. Built on [Frappe Framework](https://frappeframework.com) with a South Indian festive theme.
 
@@ -28,14 +28,14 @@ Peer-to-peer rental marketplace for props, party supplies, and event inventory. 
 ```bash
 # Prerequisites: Frappe Bench installed
 cd ~/frappe-bench/apps
-git clone https://github.com/Simbotix/nirmaha.git
+git clone https://github.com/Simbotix/nirmana.git
 
 cd ~/frappe-bench
-bench get-app nirmaha
-bench new-site nirmaha.localhost
-bench --site nirmaha.localhost install-app nirmaha
-bench --site nirmaha.localhost set-config developer_mode 1
-bench use nirmaha.localhost
+bench get-app nirmana
+bench new-site nirmana.localhost
+bench --site nirmana.localhost install-app nirmana
+bench --site nirmana.localhost set-config developer_mode 1
+bench use nirmana.localhost
 bench start
 ```
 

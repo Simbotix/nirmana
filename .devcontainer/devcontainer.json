@@ -1,5 +1,5 @@
 {
-  "name": "Nirmaha Development",
+  "name": "Nirmana Development",
   "image": "ghcr.io/frappe/bench:latest",
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
@@ -15,7 +15,7 @@
     }
   },
   "workspaceFolder": "/workspace",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/apps/nirmaha,type=bind",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/apps/nirmana,type=bind",
   "forwardPorts": [8000, 9000, 3306],
   "portsAttributes": {
     "8000": {

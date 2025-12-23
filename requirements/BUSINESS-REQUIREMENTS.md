@@ -1,8 +1,8 @@
-# Nirmaha - Business Requirements
+# Nirmana - Business Requirements
 
 ## Overview
 
-**Nirmaha** is a peer-to-peer rental marketplace for props, party supplies, and event inventory. Built on Frappe Framework with a South Indian festive theme (rangoli, lotuses, banana leaves, subtle colors).
+**Nirmana** is a peer-to-peer rental marketplace for props, party supplies, and event inventory. Built on Frappe Framework with a South Indian festive theme (rangoli, lotuses, banana leaves, subtle colors).
 
 | Attribute | Value |
 |-----------|-------|
@@ -74,12 +74,12 @@ See separate documents for detailed specifications:
 
 | Category | DocTypes |
 |----------|----------|
-| **Masters** | Nirmaha Category, Nirmaha Settings |
-| **Listings** | Nirmaha Lister, Nirmaha Item, Nirmaha Item Image |
-| **Transactions** | Nirmaha Booking, Nirmaha Booking Item, Nirmaha Payout |
-| **Reviews** | Nirmaha Review |
-| **Messaging** | Nirmaha Conversation, Nirmaha Message |
-| **Wishlist** | Nirmaha Wishlist Item |
+| **Masters** | Nirmana Category, Nirmana Settings |
+| **Listings** | Nirmana Lister, Nirmana Item, Nirmana Item Image |
+| **Transactions** | Nirmana Booking, Nirmana Booking Item, Nirmana Payout |
+| **Reviews** | Nirmana Review |
+| **Messaging** | Nirmana Conversation, Nirmana Message |
+| **Wishlist** | Nirmana Wishlist Item |
 
 ## Workflows
 
@@ -113,7 +113,7 @@ Payout to listers (minus 10% platform fee)
 
 ### Lister Onboarding (Invite-Only)
 ```
-Shilpa creates Nirmaha Lister account
+Shilpa creates Nirmana Lister account
      ↓
 System sends invite email to lister
      ↓

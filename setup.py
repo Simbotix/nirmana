@@ -3,10 +3,10 @@ from setuptools import setup, find_packages
 with open("requirements.txt") as f:
     install_requires = f.read().strip().split("\n")
 
-from nirmaha import __version__ as version
+from nirmana import __version__ as version
 
 setup(
-    name="nirmaha",
+    name="nirmana",
     version=version,
     description="Equipment Rental Management System",
     author="Rajesh Medampudi",

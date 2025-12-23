@@ -1,6 +1,6 @@
-# Nirmaha - DocType Specifications
+# Nirmana - DocType Specifications
 
-Complete field-level specifications for all DocTypes in the Nirmaha rental marketplace.
+Complete field-level specifications for all DocTypes in the Nirmana rental marketplace.
 
 ## Overview
 
@@ -17,26 +17,26 @@ Complete field-level specifications for all DocTypes in the Nirmaha rental marke
 
 ## Masters
 
-### Nirmaha Category
+### Nirmana Category
 
 Item categories (Props, Party Supplies, Decorations, etc.)
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | category_name | Data | Yes | Category name |
-| parent_category | Link: Nirmaha Category | No | Parent for subcategories |
+| parent_category | Link: Nirmana Category | No | Parent for subcategories |
 | image | Attach Image | No | Category image |
 | description | Text | No | Category description |
 
 ---
 
-### Nirmaha Settings (Single DocType)
+### Nirmana Settings (Single DocType)
 
 Platform-wide configuration. Only one record exists.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| platform_name | Data | Yes | "Nirmaha" |
+| platform_name | Data | Yes | "Nirmana" |
 | platform_fee_percent | Percent | Yes | Default: 10% |
 | delivery_radius_miles | Int | Yes | Default: 50 |
 | min_deposit_percent | Percent | Yes | Minimum deposit % |
@@ -45,13 +45,13 @@ Platform-wide configuration. Only one record exists.
 | stripe_webhook_secret | Password | No | Stripe webhook secret |
 | stripe_connect_client_id | Data | No | For lister payouts |
 | default_currency | Link: Currency | Yes | USD |
-| owner_lister | Link: Nirmaha Lister | No | Shilpa's lister account (no fees) |
+| owner_lister | Link: Nirmana Lister | No | Shilpa's lister account (no fees) |
 
 ---
 
 ## Listings
 
-### Nirmaha Lister
+### Nirmana Lister
 
 Vendor/lister profiles. Created by site owner (invite-only).
 
@@ -84,7 +84,7 @@ Vendor/lister profiles. Created by site owner (invite-only).
 
 ---
 
-### Nirmaha Item
+### Nirmana Item
 
 Rental items listed by listers.
 
@@ -93,8 +93,8 @@ Rental items listed by listers.
 | **Basic Info** |
 | item_name | Data | Yes | Display name |
 | item_code | Data | Yes | Unique code (auto-generated) |
-| lister | Link: Nirmaha Lister | Yes | Who owns this item |
-| category | Link: Nirmaha Category | Yes | Item category |
+| lister | Link: Nirmana Lister | Yes | Who owns this item |
+| category | Link: Nirmana Category | Yes | Item category |
 | status | Select | Yes | Available / Rented / Unavailable |
 | **Description** |
 | description | Text Editor | Yes | Full description |
@@ -111,7 +111,7 @@ Rental items listed by listers.
 | latitude | Float | No | Geo coordinate |
 | longitude | Float | No | Geo coordinate |
 | **Media** |
-| images | Table: Nirmaha Item Image | Yes | Multiple images |
+| images | Table: Nirmana Item Image | Yes | Multiple images |
 | how_to_video | Data | No | YouTube/video URL |
 | **Tags** |
 | tags | Table MultiSelect | No | Searchable tags |
@@ -121,7 +121,7 @@ Rental items listed by listers.
 
 ---
 
-### Nirmaha Item Image (Child Table)
+### Nirmana Item Image (Child Table)
 
 Multiple images per item.
 
@@ -135,7 +135,7 @@ Multiple images per item.
 
 ## Transactions
 
-### Nirmaha Booking
+### Nirmana Booking
 
 Customer bookings. Can include multiple items from different listers.
 
@@ -150,7 +150,7 @@ Customer bookings. Can include multiple items from different listers.
 | start_date | Date | Yes | Rental start |
 | end_date | Date | Yes | Rental end |
 | **Items** |
-| items | Table: Nirmaha Booking Item | Yes | Items in this booking |
+| items | Table: Nirmana Booking Item | Yes | Items in this booking |
 | **Delivery** |
 | delivery_type | Select | Yes | Pickup / Delivery |
 | delivery_address | Text | No | If delivery selected |
@@ -174,14 +174,14 @@ Customer bookings. Can include multiple items from different listers.
 
 ---
 
-### Nirmaha Booking Item (Child Table)
+### Nirmana Booking Item (Child Table)
 
 Individual items within a booking.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| item | Link: Nirmaha Item | Yes | Item being rented |
-| lister | Link: Nirmaha Lister | Yes | Item owner (auto-filled) |
+| item | Link: Nirmana Item | Yes | Item being rented |
+| lister | Link: Nirmana Lister | Yes | Item owner (auto-filled) |
 | quantity | Int | Yes | How many |
 | daily_rate | Currency | Yes | Rate at time of booking |
 | days | Int | Yes | Number of days |
@@ -189,13 +189,13 @@ Individual items within a booking.
 
 ---
 
-### Nirmaha Payout
+### Nirmana Payout
 
 Payouts to listers after successful rentals.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| lister | Link: Nirmaha Lister | Yes | Who gets paid |
+| lister | Link: Nirmana Lister | Yes | Who gets paid |
 | period_start | Date | Yes | Payout period start |
 | period_end | Date | Yes | Payout period end |
 | **Amounts** |
@@ -208,24 +208,24 @@ Payouts to listers after successful rentals.
 | paid_date | Date | No | When paid |
 | failure_reason | Text | No | If failed |
 | **Linked Bookings** |
-| bookings | Table: Nirmaha Payout Booking | No | Bookings included |
+| bookings | Table: Nirmana Payout Booking | No | Bookings included |
 
 ---
 
 ## Reviews
 
-### Nirmaha Review
+### Nirmana Review
 
 Customer reviews for items and listers.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| booking | Link: Nirmaha Booking | Yes | Related booking |
+| booking | Link: Nirmana Booking | Yes | Related booking |
 | reviewer | Link: User | Yes | Who wrote review |
 | **Review Target** |
 | reviewee_type | Select | Yes | Item / Lister |
-| item | Link: Nirmaha Item | No | If reviewing item |
-| lister | Link: Nirmaha Lister | No | If reviewing lister |
+| item | Link: Nirmana Item | No | If reviewing item |
+| lister | Link: Nirmana Lister | No | If reviewing lister |
 | **Review Content** |
 | rating | Int | Yes | 1-5 stars |
 | review_text | Text | No | Written review |
@@ -236,7 +236,7 @@ Customer reviews for items and listers.
 
 ## Messaging
 
-### Nirmaha Conversation
+### Nirmana Conversation
 
 Message thread between a renter and lister.
 
@@ -245,12 +245,12 @@ Message thread between a renter and lister.
 | conversation_id | Data | Yes | Auto-generated |
 | **Participants** |
 | renter | Link: User | Yes | Customer in conversation |
-| lister | Link: Nirmaha Lister | Yes | Lister in conversation |
+| lister | Link: Nirmana Lister | Yes | Lister in conversation |
 | **Context** |
-| item | Link: Nirmaha Item | No | Related item (if inquiry) |
-| booking | Link: Nirmaha Booking | No | Related booking (if exists) |
+| item | Link: Nirmana Item | No | Related item (if inquiry) |
+| booking | Link: Nirmana Booking | No | Related booking (if exists) |
 | **Messages** |
-| messages | Table: Nirmaha Message | No | Message history |
+| messages | Table: Nirmana Message | No | Message history |
 | **Status** |
 | last_message_at | Datetime | No | For sorting |
 | last_message_by | Link: User | No | Who sent last |
@@ -259,7 +259,7 @@ Message thread between a renter and lister.
 
 ---
 
-### Nirmaha Message (Child Table)
+### Nirmana Message (Child Table)
 
 Individual messages within a conversation.
 
@@ -274,14 +274,14 @@ Individual messages within a conversation.
 
 ## Wishlist
 
-### Nirmaha Wishlist Item
+### Nirmana Wishlist Item
 
 Items saved/favorited by users.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | user | Link: User | Yes | Who saved the item |
-| item | Link: Nirmaha Item | Yes | Saved item |
+| item | Link: Nirmana Item | Yes | Saved item |
 | added_at | Datetime | Yes | When added |
 | notify_available | Check | No | Notify when item becomes available |
 
@@ -312,34 +312,34 @@ Items saved/favorited by users.
 
 ## Status Options
 
-### Nirmaha Item.status
+### Nirmana Item.status
 - Available
 - Rented
 - Unavailable
 
-### Nirmaha Booking.status
+### Nirmana Booking.status
 - Pending
 - Confirmed
 - Picked Up
 - Returned
 - Cancelled
 
-### Nirmaha Payout.status
+### Nirmana Payout.status
 - Pending
 - Processing
 - Paid
 - Failed
 
-### Nirmaha Item.condition
+### Nirmana Item.condition
 - New
 - Like New
 - Good
 - Fair
 
-### Nirmaha Booking.delivery_type
+### Nirmana Booking.delivery_type
 - Pickup
 - Delivery
 
-### Nirmaha Review.reviewee_type
+### Nirmana Review.reviewee_type
 - Item
 - Lister

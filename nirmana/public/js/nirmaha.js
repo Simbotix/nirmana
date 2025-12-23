@@ -1,9 +1,9 @@
-// Nirmaha - Equipment Rental Management System
+// Nirmana - Equipment Rental Management System
 // Main JavaScript file
 
-frappe.provide("nirmaha");
+frappe.provide("nirmana");
 
-nirmaha = {
+nirmana = {
     // Format currency for display
     format_currency: function(amount, currency) {
         currency = currency || frappe.defaults.get_default("currency");
@@ -49,7 +49,7 @@ nirmaha = {
     // Show equipment availability
     check_availability: function(equipment_id, start_date, end_date, callback) {
         frappe.call({
-            method: "nirmaha.api.check_equipment_availability",
+            method: "nirmana.api.check_equipment_availability",
             args: {
                 equipment_id: equipment_id,
                 start_date: start_date,
@@ -64,7 +64,7 @@ nirmaha = {
     // Generate QR code for equipment
     generate_qr_code: function(equipment_id, target_element) {
         frappe.call({
-            method: "nirmaha.api.get_equipment_qr",
+            method: "nirmana.api.get_equipment_qr",
             args: { equipment_id: equipment_id },
             callback: function(r) {
                 if (r.message && target_element) {
@@ -77,9 +77,9 @@ nirmaha = {
 
 // Extend Frappe's Desk
 $(document).ready(function() {
-    // Add quick actions if on Nirmaha workspace
+    // Add quick actions if on Nirmana workspace
     if (frappe.get_route()[0] === "Workspaces" &&
-        frappe.get_route()[1] === "Nirmaha") {
+        frappe.get_route()[1] === "Nirmana") {
         // Custom workspace initialization
     }
 });

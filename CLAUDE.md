@@ -1,14 +1,14 @@
-# CLAUDE.md - Nirmaha
+# CLAUDE.md - Nirmana
 
 You are my ruthless mentor. Don't sugarcoat anything. If my idea is weak, call it trash and tell me why.
 
 ## Project Overview
 
-**Nirmaha** is a peer-to-peer rental marketplace for props, party supplies, and event inventory. Built on Frappe Framework with a South Indian festive theme.
+**Nirmana** is a peer-to-peer rental marketplace for props, party supplies, and event inventory. Built on Frappe Framework with a South Indian festive theme.
 
 | Attribute | Value |
 |-----------|-------|
-| **App Name** | nirmaha |
+| **App Name** | nirmana |
 | **Platform Type** | Peer-to-peer rental marketplace |
 | **Owner** | Shilpa (Sister) |
 | **IT Admin** | Rajesh |
@@ -16,7 +16,7 @@ You are my ruthless mentor. Don't sugarcoat anything. If my idea is weak, call i
 | **Theme** | South Indian festive (rangoli, lotuses, banana leaves) |
 | **Target Market** | US-based (50-mile delivery radius) |
 | **Payment Gateway** | Stripe |
-| **Staging** | nirmaha.press.appz.studio |
+| **Staging** | nirmana.press.appz.studio |
 
 ## Business Context
 
@@ -34,38 +34,38 @@ This is a **family project** with a March deadline for community showcase.
 ### Masters
 | DocType | Purpose |
 |---------|---------|
-| `Nirmaha Category` | Item categories (Props, Party Supplies, Decorations) |
-| `Nirmaha Settings` | Single DocType for app configuration |
+| `Nirmana Category` | Item categories (Props, Party Supplies, Decorations) |
+| `Nirmana Settings` | Single DocType for app configuration |
 
 ### Listings
 | DocType | Purpose |
 |---------|---------|
-| `Nirmaha Lister` | Vendor/lister profiles with Stripe Connect |
-| `Nirmaha Item` | Rental items with images, pricing, location |
-| `Nirmaha Item Image` | Child table for multiple item images |
+| `Nirmana Lister` | Vendor/lister profiles with Stripe Connect |
+| `Nirmana Item` | Rental items with images, pricing, location |
+| `Nirmana Item Image` | Child table for multiple item images |
 
 ### Transactions
 | DocType | Purpose |
 |---------|---------|
-| `Nirmaha Booking` | Customer bookings (multi-item, multi-lister) |
-| `Nirmaha Booking Item` | Child table for items in booking |
-| `Nirmaha Payout` | Lister payouts (minus 10% platform fee) |
+| `Nirmana Booking` | Customer bookings (multi-item, multi-lister) |
+| `Nirmana Booking Item` | Child table for items in booking |
+| `Nirmana Payout` | Lister payouts (minus 10% platform fee) |
 
 ### Reviews
 | DocType | Purpose |
 |---------|---------|
-| `Nirmaha Review` | Customer reviews for items/listers |
+| `Nirmana Review` | Customer reviews for items/listers |
 
 ### Messaging
 | DocType | Purpose |
 |---------|---------|
-| `Nirmaha Conversation` | Message thread between renter and lister |
-| `Nirmaha Message` | Individual messages (child table) |
+| `Nirmana Conversation` | Message thread between renter and lister |
+| `Nirmana Message` | Individual messages (child table) |
 
 ### Wishlist
 | DocType | Purpose |
 |---------|---------|
-| `Nirmaha Wishlist Item` | Saved/favorited items per user |
+| `Nirmana Wishlist Item` | Saved/favorited items per user |
 
 ## Platform Fee Logic
 
@@ -133,12 +133,12 @@ if not item.lister.is_owner:
 ```bash
 # Clone into bench apps folder
 cd ~/frappe-bench/apps
-git clone https://github.com/Simbotix/nirmaha.git
+git clone https://github.com/Simbotix/nirmana.git
 
 # Install app
 cd ~/frappe-bench
-bench get-app nirmaha
-bench --site your-site.localhost install-app nirmaha
+bench get-app nirmana
+bench --site your-site.localhost install-app nirmana
 
 # Start development
 bench start
@@ -165,28 +165,28 @@ TWILIO_AUTH_TOKEN=
 TWILIO_PHONE_NUMBER=
 
 # Site Configuration
-SITE_NAME=nirmaha.localhost
+SITE_NAME=nirmana.localhost
 ADMIN_PASSWORD=
 ```
 
 ## File Structure
 
 ```
-nirmaha/
-├── nirmaha/
+nirmana/
+├── nirmana/
 │   ├── __init__.py
 │   ├── hooks.py
 │   ├── modules.txt
 │   ├── patches.txt
-│   ├── nirmaha/                    # Module folder
+│   ├── nirmana/                    # Module folder
 │   │   ├── doctype/
-│   │   │   ├── nirmaha_category/
-│   │   │   ├── nirmaha_settings/
-│   │   │   ├── nirmaha_lister/
-│   │   │   ├── nirmaha_item/
-│   │   │   ├── nirmaha_booking/
-│   │   │   ├── nirmaha_payout/
-│   │   │   ├── nirmaha_review/
+│   │   │   ├── nirmana_category/
+│   │   │   ├── nirmana_settings/
+│   │   │   ├── nirmana_lister/
+│   │   │   ├── nirmana_item/
+│   │   │   ├── nirmana_booking/
+│   │   │   ├── nirmana_payout/
+│   │   │   ├── nirmana_review/
 │   │   │   └── ...
 │   │   └── report/
 │   ├── api/                        # Whitelisted APIs
@@ -196,8 +196,8 @@ nirmaha/
 │   │   ├── stripe.py
 │   │   └── delivery.py
 │   ├── public/
-│   │   ├── css/nirmaha.css         # South Indian festive theme
-│   │   └── js/nirmaha.js
+│   │   ├── css/nirmana.css         # South Indian festive theme
+│   │   └── js/nirmana.js
 │   ├── templates/
 │   │   ├── pages/                  # Portal pages
 │   │   └── includes/
@@ -218,7 +218,7 @@ nirmaha/
 
 ## Coding Standards
 
-1. **DocType naming**: Prefix with `Nirmaha ` (e.g., `Nirmaha Item`)
+1. **DocType naming**: Prefix with `Nirmana ` (e.g., `Nirmana Item`)
 2. **Field naming**: snake_case
 3. **Python**: Follow Frappe conventions, use type hints
 4. **JavaScript**: Use Frappe's JS patterns
@@ -279,7 +279,7 @@ def get_lister_earnings(lister_id):
 10. Payout to listers (minus 10% platform fee)
 
 ### Lister Onboarding (Invite-Only)
-1. Shilpa creates Nirmaha Lister account
+1. Shilpa creates Nirmana Lister account
 2. System sends invite email to lister
 3. Lister clicks link → Sets password
 4. Lister completes profile + connects Stripe

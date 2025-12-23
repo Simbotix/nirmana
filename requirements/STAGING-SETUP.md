@@ -4,9 +4,9 @@
 
 | Property | Value |
 |----------|-------|
-| **Staging URL** | https://nirmaha.press.appz.studio |
+| **Staging URL** | https://nirmana.press.appz.studio |
 | **Press Dashboard** | https://press.appz.studio |
-| **GitHub Repo** | https://github.com/Simbotix/nirmaha |
+| **GitHub Repo** | https://github.com/Simbotix/nirmana |
 
 ## 1. Add App to Frappe Press
 
@@ -14,8 +14,8 @@ In press.appz.studio dashboard:
 
 1. Go to **Apps** → **New App**
 2. Fill in:
-   - **App Name**: nirmaha
-   - **GitHub URL**: https://github.com/Simbotix/nirmaha
+   - **App Name**: nirmana
+   - **GitHub URL**: https://github.com/Simbotix/nirmana
    - **Branch**: main
 3. Save and wait for app to be added
 
@@ -23,8 +23,8 @@ In press.appz.studio dashboard:
 
 1. Go to **Sites** → **New Site**
 2. Configure:
-   - **Subdomain**: nirmaha
-   - **Apps**: Select `frappe` + `nirmaha`
+   - **Subdomain**: nirmana
+   - **Apps**: Select `frappe` + `nirmana`
    - **Plan**: Choose appropriate plan
 3. Create site
 
@@ -47,14 +47,14 @@ After site is created, add these to site_config.json via Press dashboard or SSH:
 
 ### Enable Scheduler
 ```bash
-bench --site nirmaha.press.appz.studio enable-scheduler
+bench --site nirmana.press.appz.studio enable-scheduler
 ```
 
 ### Configure Razorpay
 1. Login as Administrator
 2. Go to: **Setup > Integrations > Razorpay Settings**
 3. Enter API credentials
-4. Set webhook URL: `https://nirmaha.press.appz.studio/api/method/nirmaha.api.payments.razorpay_webhook`
+4. Set webhook URL: `https://nirmana.press.appz.studio/api/method/nirmana.api.payments.razorpay_webhook`
 
 ### Configure SMS
 1. Go to: **Setup > SMS Settings** (or create custom doctype)
@@ -73,7 +73,7 @@ For external integrations:
 
 ```bash
 # Add to deployment_server/.env
-NIRMAHA_STAGING_URL=https://nirmaha.press.appz.studio
+NIRMAHA_STAGING_URL=https://nirmana.press.appz.studio
 NIRMAHA_API_KEY=<generated_api_key>
 NIRMAHA_API_SECRET=<generated_api_secret>
 ```
@@ -84,8 +84,8 @@ If using custom domain later:
 
 | Type | Name | Value |
 |------|------|-------|
-| A | nirmaha | 65.21.126.235 |
-| CNAME | www.nirmaha | nirmaha.press.appz.studio |
+| A | nirmana | 65.21.126.235 |
+| CNAME | www.nirmana | nirmana.press.appz.studio |
 
 ## 7. SSL Certificate
 
@@ -93,9 +93,9 @@ Frappe Press handles SSL automatically via Let's Encrypt.
 
 ## Verification Checklist
 
-- [ ] Site accessible at https://nirmaha.press.appz.studio
+- [ ] Site accessible at https://nirmana.press.appz.studio
 - [ ] Can login as Administrator
-- [ ] Nirmaha app installed and visible in modules
+- [ ] Nirmana app installed and visible in modules
 - [ ] Razorpay integration configured
 - [ ] SMS provider configured
 - [ ] Scheduler enabled

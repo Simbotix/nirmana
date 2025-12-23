@@ -1,6 +1,6 @@
-# Nirmaha - Time Estimate
+# Nirmana - Time Estimate
 
-Estimated development time for the complete Nirmaha rental marketplace.
+Estimated development time for the complete Nirmana rental marketplace.
 
 ## Summary
 
@@ -20,13 +20,13 @@ Estimated development time for the complete Nirmaha rental marketplace.
 
 | Task | Hours | Notes |
 |------|-------|-------|
-| Nirmaha Settings (Single) | 2 | Platform config |
-| Nirmaha Category | 2 | With hierarchy |
-| Nirmaha Lister | 4 | Profile, permissions, invite flow |
-| Nirmaha Item + Item Image | 6 | Multi-image, geo-location |
-| Nirmaha Booking + Booking Item | 6 | Complex with calculations |
-| Nirmaha Payout | 3 | Lister payouts |
-| Nirmaha Review | 2 | Rating system |
+| Nirmana Settings (Single) | 2 | Platform config |
+| Nirmana Category | 2 | With hierarchy |
+| Nirmana Lister | 4 | Profile, permissions, invite flow |
+| Nirmana Item + Item Image | 6 | Multi-image, geo-location |
+| Nirmana Booking + Booking Item | 6 | Complex with calculations |
+| Nirmana Payout | 3 | Lister payouts |
+| Nirmana Review | 2 | Rating system |
 
 ### Basic Setup (15-20 hrs)
 
@@ -186,7 +186,7 @@ Add:
 
 | Package | What's Included | Price |
 |---------|-----------------|-------|
-| **Full Platform** | Complete Nirmaha marketplace with all features | **₹2,00,000** |
+| **Full Platform** | Complete Nirmana marketplace with all features | **₹2,00,000** |
 
 This includes:
 - All DocTypes and data model

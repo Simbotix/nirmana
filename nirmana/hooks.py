@@ -1,22 +1,22 @@
-app_name = "nirmaha"
-app_title = "Nirmaha"
+app_name = "nirmana"
+app_title = "Nirmana"
 app_publisher = "Simbotix"
 app_description = "Peer-to-peer rental marketplace for props, party supplies, and event inventory"
 app_email = "rajesh@simbotix.com"
 app_license = "MIT"
-app_logo_url = "/assets/nirmaha/images/logo.png"
+app_logo_url = "/assets/nirmana/images/logo.png"
 
 # Apps
 required_apps = ["frappe"]
 
 # Includes in <head>
 # ------------------
-app_include_css = "/assets/nirmaha/css/nirmaha.css"
-app_include_js = "/assets/nirmaha/js/nirmaha.js"
+app_include_css = "/assets/nirmana/css/nirmana.css"
+app_include_js = "/assets/nirmana/js/nirmana.js"
 
 # Website includes
-# web_include_css = "/assets/nirmaha/css/nirmaha-web.css"
-# web_include_js = "/assets/nirmaha/js/nirmaha-web.js"
+# web_include_css = "/assets/nirmana/css/nirmana-web.css"
+# web_include_js = "/assets/nirmana/js/nirmana-web.js"
 
 # Home Pages
 # ----------
@@ -34,36 +34,36 @@ app_include_js = "/assets/nirmaha/js/nirmaha.js"
 # ----------
 # add methods and filters to jinja environment
 # jinja = {
-# 	"methods": "nirmaha.utils.jinja_methods",
-# 	"filters": "nirmaha.utils.jinja_filters"
+# 	"methods": "nirmana.utils.jinja_methods",
+# 	"filters": "nirmana.utils.jinja_filters"
 # }
 
 # Installation
 # ------------
-# before_install = "nirmaha.install.before_install"
-# after_install = "nirmaha.install.after_install"
+# before_install = "nirmana.install.before_install"
+# after_install = "nirmana.install.after_install"
 
 # Uninstallation
 # ------------
-# before_uninstall = "nirmaha.uninstall.before_uninstall"
-# after_uninstall = "nirmaha.uninstall.after_uninstall"
+# before_uninstall = "nirmana.uninstall.before_uninstall"
+# after_uninstall = "nirmana.uninstall.after_uninstall"
 
 # Integration Setup
 # ------------------
-# before_app_install = "nirmaha.utils.before_app_install"
-# after_app_install = "nirmaha.utils.after_app_install"
+# before_app_install = "nirmana.utils.before_app_install"
+# after_app_install = "nirmana.utils.after_app_install"
 
 # Desk Notifications
 # ------------------
-# notification_config = "nirmaha.notifications.get_notification_config"
+# notification_config = "nirmana.notifications.get_notification_config"
 
 # Permissions
 # -----------
 # permission_query_conditions = {
-# 	"Rental Booking": "nirmaha.permissions.get_booking_permission_query_conditions",
+# 	"Rental Booking": "nirmana.permissions.get_booking_permission_query_conditions",
 # }
 # has_permission = {
-# 	"Rental Booking": "nirmaha.permissions.has_booking_permission",
+# 	"Rental Booking": "nirmana.permissions.has_booking_permission",
 # }
 
 # DocType Class
@@ -76,8 +76,8 @@ app_include_js = "/assets/nirmaha/js/nirmaha.js"
 # ---------------
 # doc_events = {
 # 	"Rental Booking": {
-# 		"on_submit": "nirmaha.handlers.on_booking_submit",
-# 		"on_cancel": "nirmaha.handlers.on_booking_cancel",
+# 		"on_submit": "nirmana.handlers.on_booking_submit",
+# 		"on_cancel": "nirmana.handlers.on_booking_cancel",
 # 	}
 # }
 
@@ -85,28 +85,28 @@ app_include_js = "/assets/nirmaha/js/nirmaha.js"
 # ---------------
 # scheduler_events = {
 # 	"daily": [
-# 		"nirmaha.tasks.send_return_reminders"
+# 		"nirmana.tasks.send_return_reminders"
 # 	],
 # 	"hourly": [
-# 		"nirmaha.tasks.check_overdue_rentals"
+# 		"nirmana.tasks.check_overdue_rentals"
 # 	],
 # }
 
 # Testing
 # -------
-# before_tests = "nirmaha.install.before_tests"
+# before_tests = "nirmana.install.before_tests"
 
 # Overriding Methods
 # ------------------------------
 # override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "nirmaha.event.get_events"
+# 	"frappe.desk.doctype.event.event.get_events": "nirmana.event.get_events"
 # }
 
 # Exempt DocTypes from Fixtures
 # -----------------------------
 # fixtures = [
-#     {"dt": "Custom Field", "filters": [["module", "=", "Nirmaha"]]},
-#     {"dt": "Property Setter", "filters": [["module", "=", "Nirmaha"]]},
+#     {"dt": "Custom Field", "filters": [["module", "=", "Nirmana"]]},
+#     {"dt": "Property Setter", "filters": [["module", "=", "Nirmana"]]},
 # ]
 
 # Ignore links to specified DocTypes when deleting documents
@@ -115,12 +115,12 @@ app_include_js = "/assets/nirmaha/js/nirmaha.js"
 
 # Request Events
 # ----------------
-# before_request = ["nirmaha.utils.before_request"]
-# after_request = ["nirmaha.utils.after_request"]
+# before_request = ["nirmana.utils.before_request"]
+# after_request = ["nirmana.utils.after_request"]
 
 # Override REST API responses
 # override_response = {
-# 	"frappe.desk.desktop.get_workspace_sidebar_items": "nirmaha.api.get_sidebar"
+# 	"frappe.desk.desktop.get_workspace_sidebar_items": "nirmana.api.get_sidebar"
 # }
 
 # User Data Protection
@@ -137,5 +137,5 @@ user_data_fields = [
 # Authentication and authorization
 # --------------------------------
 # auth_hooks = [
-# 	"nirmaha.auth.validate"
+# 	"nirmana.auth.validate"
 # ]

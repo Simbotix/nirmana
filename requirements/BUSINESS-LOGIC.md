@@ -1,4 +1,4 @@
-# Nirmaha - Business Logic & Functions
+# Nirmana - Business Logic & Functions
 
 All calculation logic, workflows, and API specifications.
 
@@ -13,7 +13,7 @@ def calculate_platform_fee(booking_items):
     Only exception: Site owner (is_owner=True) keeps 100%.
 
     Args:
-        booking_items: List of Nirmaha Booking Item records
+        booking_items: List of Nirmana Booking Item records
 
     Returns:
         Decimal: Total platform fee
@@ -88,7 +88,7 @@ def calculate_deposit(booking_items):
     Tiered percentage system.
 
     Args:
-        booking_items: List of Nirmaha Booking Item records
+        booking_items: List of Nirmana Booking Item records
 
     Returns:
         Decimal: Required deposit amount
@@ -179,7 +179,7 @@ def calculate_item_price(item, days):
     Auto-selects weekly rate if beneficial.
 
     Args:
-        item: Nirmaha Item record
+        item: Nirmana Item record
         days: Number of rental days
 
     Returns:
@@ -209,7 +209,7 @@ def check_item_availability(item_id, start_date, end_date, quantity=1):
     Check if item is available for given dates.
 
     Args:
-        item_id: Nirmaha Item ID
+        item_id: Nirmana Item ID
         start_date: Requested start date
         end_date: Requested end date
         quantity: How many needed
@@ -221,18 +221,18 @@ def check_item_availability(item_id, start_date, end_date, quantity=1):
             "conflicting_bookings": list
         }
     """
-    item = frappe.get_doc("Nirmaha Item", item_id)
+    item = frappe.get_doc("Nirmana Item", item_id)
 
     if item.status == "Unavailable":
         return {"available": False, "available_quantity": 0, "conflicting_bookings": []}
 
     # Find overlapping confirmed bookings
     overlapping = frappe.get_all(
-        "Nirmaha Booking Item",
+        "Nirmana Booking Item",
         filters={
             "item": item_id,
             "parent": ["in",
-                frappe.get_all("Nirmaha Booking",
+                frappe.get_all("Nirmana Booking",
                     filters={
                         "status": ["in", ["Confirmed", "Picked Up"]],
                         "start_date": ["<=", end_date],
@@ -265,7 +265,7 @@ def calculate_lister_payout(lister_id, start_date, end_date):
     Calculate payout for a lister for given period.
 
     Args:
-        lister_id: Nirmaha Lister ID
+        lister_id: Nirmana Lister ID
         start_date: Period start
         end_date: Period end
 
@@ -277,15 +277,15 @@ def calculate_lister_payout(lister_id, start_date, end_date):
             "bookings": list
         }
     """
-    lister = frappe.get_doc("Nirmaha Lister", lister_id)
+    lister = frappe.get_doc("Nirmana Lister", lister_id)
 
     # Get all completed bookings in period
     booking_items = frappe.get_all(
-        "Nirmaha Booking Item",
+        "Nirmana Booking Item",
         filters={
             "lister": lister_id,
             "parent": ["in",
-                frappe.get_all("Nirmaha Booking",
+                frappe.get_all("Nirmana Booking",
                     filters={
                         "status": "Returned",
                         "end_date": ["between", [start_date, end_date]]
@@ -328,7 +328,7 @@ def search_items(category=None, zip_code=None, radius=50, query=None):
     Search items by category, location, or text.
 
     Args:
-        category: Nirmaha Category name
+        category: Nirmana Category name
         zip_code: Customer ZIP for distance filtering
         radius: Max miles from ZIP (default 50)
         query: Text search in name/description
@@ -568,7 +568,7 @@ def send_pickup_reminder():
     """
     tomorrow = add_days(today(), 1)
 
-    bookings = frappe.get_all("Nirmaha Booking",
+    bookings = frappe.get_all("Nirmana Booking",
         filters={
             "status": "Confirmed",
             "delivery_type": "Pickup",
@@ -586,7 +586,7 @@ def send_return_reminder():
     """
     tomorrow = add_days(today(), 1)
 
-    bookings = frappe.get_all("Nirmaha Booking",
+    bookings = frappe.get_all("Nirmana Booking",
         filters={
             "status": "Picked Up",
             "end_date": tomorrow
@@ -601,7 +601,7 @@ def notify_wishlist_available(item_id):
     """
     Notify users when wishlisted item becomes available.
     """
-    wishlist_items = frappe.get_all("Nirmaha Wishlist Item",
+    wishlist_items = frappe.get_all("Nirmana Wishlist Item",
         filters={
             "item": item_id,
             "notify_available": 1

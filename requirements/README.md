@@ -1,6 +1,6 @@
 # Requirements
 
-This folder contains all requirements and setup documentation for the Nirmaha project.
+This folder contains all requirements and setup documentation for the Nirmana project.
 
 ## Documents
 

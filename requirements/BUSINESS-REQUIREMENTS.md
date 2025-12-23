@@ -63,171 +63,23 @@
 - View all favorited items in one place
 - Get notified when favorited items become available
 
-## DocType Specifications
+## Detailed Specifications
 
-### Masters
+See separate documents for detailed specifications:
 
-#### Nirmaha Category
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| category_name | Data | Yes | Category name |
-| parent_category | Link: Nirmaha Category | No | Parent for subcategories |
-| image | Attach Image | No | Category image |
-| description | Text | No | Category description |
+- **[DOCTYPES.md](./DOCTYPES.md)** - Complete field-level DocType specifications
+- **[BUSINESS-LOGIC.md](./BUSINESS-LOGIC.md)** - Calculation logic, APIs, and workflows
 
-#### Nirmaha Settings (Single)
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| platform_name | Data | Yes | "Nirmaha" |
-| platform_fee_percent | Percent | Yes | Default 10% |
-| delivery_radius_miles | Int | Yes | Default 50 |
-| min_deposit_percent | Percent | Yes | Minimum deposit % |
-| stripe_publishable_key | Data | Yes | Stripe public key |
-| stripe_secret_key | Password | Yes | Stripe secret key |
-| default_currency | Link: Currency | Yes | USD |
+### DocType Summary
 
-### Listings
-
-#### Nirmaha Lister
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| user | Link: User | Yes | Linked user account |
-| lister_name | Data | Yes | Display name |
-| phone | Data | Yes | Contact phone |
-| email | Data | Yes | Contact email |
-| address | Text | Yes | Full address |
-| city | Data | Yes | City |
-| state | Data | Yes | State |
-| zip_code | Data | Yes | ZIP code |
-| latitude | Float | No | Geo coordinate |
-| longitude | Float | No | Geo coordinate |
-| bio | Text | No | About the lister |
-| profile_image | Attach Image | No | Profile photo |
-| is_owner | Check | No | Platform owner (Shilpa) - no fees |
-| stripe_account_id | Data | No | Stripe Connect account |
-| total_listings | Int | No | Count (auto) |
-| total_earnings | Currency | No | Lifetime earnings (auto) |
-| rating | Float | No | Average rating (auto) |
-
-#### Nirmaha Item
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| item_name | Data | Yes | Display name |
-| item_code | Data | Yes | Unique code (auto) |
-| lister | Link: Nirmaha Lister | Yes | Who owns this item |
-| category | Link: Nirmaha Category | Yes | Item category |
-| status | Select | Yes | Available/Rented/Unavailable |
-| description | Text Editor | Yes | Full description |
-| daily_rate | Currency | Yes | Price per day |
-| weekly_rate | Currency | No | Price per week (discount) |
-| deposit_amount | Currency | Yes | Security deposit |
-| quantity | Int | Yes | How many available |
-| condition | Select | Yes | New/Like New/Good/Fair |
-| location_city | Data | Yes | Item location city |
-| location_state | Data | Yes | Item location state |
-| location_zip | Data | Yes | Item location ZIP |
-| latitude | Float | No | Geo coordinate |
-| longitude | Float | No | Geo coordinate |
-| images | Table: Nirmaha Item Image | Yes | Multiple images |
-| how_to_video | Data | No | YouTube/video URL |
-| tags | Table MultiSelect | No | Searchable tags |
-
-#### Nirmaha Item Image (Child Table)
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| image | Attach Image | Yes | Item photo |
-| is_primary | Check | No | Main display image |
-| caption | Data | No | Image caption |
-
-### Transactions
-
-#### Nirmaha Booking
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| booking_id | Data | Yes | Auto-generated |
-| customer | Link: User | Yes | Who is renting |
-| status | Select | Yes | Pending/Confirmed/Picked Up/Returned/Cancelled |
-| booking_date | Date | Yes | When booked |
-| start_date | Date | Yes | Rental start |
-| end_date | Date | Yes | Rental end |
-| items | Table: Nirmaha Booking Item | Yes | Items in this booking |
-| delivery_type | Select | Yes | Pickup/Delivery |
-| delivery_address | Text | No | If delivery |
-| delivery_fee | Currency | No | Calculated delivery cost |
-| subtotal | Currency | No | Items total |
-| platform_fee | Currency | No | 10% of partner items |
-| deposit_amount | Currency | No | Total deposit required |
-| grand_total | Currency | No | Final amount |
-| stripe_payment_intent | Data | No | Stripe reference |
-| notes | Text | No | Special requests |
-
-#### Nirmaha Booking Item (Child Table)
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| item | Link: Nirmaha Item | Yes | Item being rented |
-| lister | Link: Nirmaha Lister | Yes | Item owner (auto-filled) |
-| quantity | Int | Yes | How many |
-| daily_rate | Currency | Yes | Rate at time of booking |
-| days | Int | Yes | Number of days |
-| line_total | Currency | Yes | Calculated |
-
-#### Nirmaha Payout
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| lister | Link: Nirmaha Lister | Yes | Who gets paid |
-| period_start | Date | Yes | Payout period start |
-| period_end | Date | Yes | Payout period end |
-| gross_amount | Currency | Yes | Total before fees |
-| platform_fee | Currency | Yes | 10% deducted |
-| net_amount | Currency | Yes | Amount to pay |
-| status | Select | Yes | Pending/Paid |
-| stripe_transfer_id | Data | No | Stripe reference |
-| paid_date | Date | No | When paid |
-
-### Reviews
-
-#### Nirmaha Review
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| booking | Link: Nirmaha Booking | Yes | Related booking |
-| reviewer | Link: User | Yes | Who wrote review |
-| reviewee_type | Select | Yes | Item/Lister/Renter |
-| item | Link: Nirmaha Item | No | If reviewing item |
-| lister | Link: Nirmaha Lister | No | If reviewing lister |
-| rating | Int | Yes | 1-5 stars |
-| review_text | Text | No | Written review |
-
-### Messaging
-
-#### Nirmaha Conversation
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| conversation_id | Data | Yes | Auto-generated |
-| item | Link: Nirmaha Item | No | Related item (if inquiry) |
-| booking | Link: Nirmaha Booking | No | Related booking (if exists) |
-| renter | Link: User | Yes | Customer in conversation |
-| lister | Link: Nirmaha Lister | Yes | Lister in conversation |
-| last_message_at | Datetime | No | For sorting |
-| is_read_by_renter | Check | No | Renter read status |
-| is_read_by_lister | Check | No | Lister read status |
-
-#### Nirmaha Message (Child Table)
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| sender | Link: User | Yes | Who sent message |
-| message | Text | Yes | Message content |
-| sent_at | Datetime | Yes | Timestamp |
-| is_read | Check | No | Read status |
-
-### Wishlist
-
-#### Nirmaha Wishlist Item
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| user | Link: User | Yes | Who saved the item |
-| item | Link: Nirmaha Item | Yes | Saved item |
-| added_at | Datetime | Yes | When added |
-| notify_available | Check | No | Notify when available |
+| Category | DocTypes |
+|----------|----------|
+| **Masters** | Nirmaha Category, Nirmaha Settings |
+| **Listings** | Nirmaha Lister, Nirmaha Item, Nirmaha Item Image |
+| **Transactions** | Nirmaha Booking, Nirmaha Booking Item, Nirmaha Payout |
+| **Reviews** | Nirmaha Review |
+| **Messaging** | Nirmaha Conversation, Nirmaha Message |
+| **Wishlist** | Nirmaha Wishlist Item |
 
 ## Workflows
 
@@ -276,62 +128,6 @@ Lister adds first listing
 Listing goes live
      ↓
 Receive bookings → Fulfill → Get paid
-```
-
-## Delivery Cost Calculator
-
-```python
-def calculate_delivery_cost(origin_zip, destination_zip):
-    """
-    Calculate delivery fee based on distance.
-    Uses ZIP code to estimate distance.
-    """
-    distance_miles = get_distance(origin_zip, destination_zip)
-
-    if distance_miles > 50:
-        return None  # Out of delivery range
-
-    # Base fee + per-mile charge
-    base_fee = 10.00
-    per_mile = 0.50
-
-    return base_fee + (distance_miles * per_mile)
-```
-
-## Platform Fee Logic
-
-```python
-def calculate_platform_fee(booking_items):
-    """
-    10% platform fee on ALL lister transactions.
-    Only exception: Shilpa (is_owner=True) keeps 100%.
-    """
-    total_fee = 0
-
-    for item in booking_items:
-        if not item.lister.is_owner:
-            total_fee += item.line_total * 0.10
-
-    return total_fee
-```
-
-## Deposit Calculation
-
-```python
-def calculate_deposit(booking_items):
-    """
-    Deposit based on total order value.
-    Minimum 20%, maximum 50% of item value.
-    """
-    total_value = sum(item.line_total for item in booking_items)
-
-    # Tiered deposit
-    if total_value < 100:
-        return total_value * 0.50  # 50% for small orders
-    elif total_value < 500:
-        return total_value * 0.30  # 30% for medium
-    else:
-        return total_value * 0.20  # 20% for large orders
 ```
 
 ## Theme & Design

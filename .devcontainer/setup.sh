@@ -1,17 +1,17 @@
 #!/bin/bash
 set -e
 
-echo "🚀 Setting up Nirmaha development environment..."
+echo "🚀 Setting up Nirmana development environment..."
 
 # Navigate to bench directory
 cd /home/frappe/frappe-bench
 
 # Install the app from mounted workspace
-echo "📦 Installing nirmaha app..."
-bench get-app /workspace/apps/nirmaha --skip-assets
+echo "📦 Installing nirmana app..."
+bench get-app /workspace/apps/nirmana --skip-assets
 
 # Create a new site if it doesn't exist
-SITE_NAME="nirmaha.localhost"
+SITE_NAME="nirmana.localhost"
 if [ ! -d "sites/$SITE_NAME" ]; then
     echo "🌐 Creating site: $SITE_NAME..."
     bench new-site $SITE_NAME \
@@ -21,8 +21,8 @@ if [ ! -d "sites/$SITE_NAME" ]; then
 fi
 
 # Install app on site
-echo "📲 Installing nirmaha on $SITE_NAME..."
-bench --site $SITE_NAME install-app nirmaha || true
+echo "📲 Installing nirmana on $SITE_NAME..."
+bench --site $SITE_NAME install-app nirmana || true
 
 # Set as default site
 bench use $SITE_NAME

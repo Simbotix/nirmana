@@ -73,9 +73,9 @@ For external integrations:
 
 ```bash
 # Add to deployment_server/.env
-NIRMAHA_STAGING_URL=https://nirmana.press.appz.studio
-NIRMAHA_API_KEY=<generated_api_key>
-NIRMAHA_API_SECRET=<generated_api_secret>
+NIRMANA_STAGING_URL=https://nirmana.press.appz.studio
+NIRMANA_API_KEY=<generated_api_key>
+NIRMANA_API_SECRET=<generated_api_secret>
 ```
 
 ## 6. DNS Configuration

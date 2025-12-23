@@ -4,15 +4,15 @@ include *.json
 include *.md
 include *.py
 include *.txt
-recursive-include nirmaha *.css
-recursive-include nirmaha *.csv
-recursive-include nirmaha *.html
-recursive-include nirmaha *.ico
-recursive-include nirmaha *.js
-recursive-include nirmaha *.json
-recursive-include nirmaha *.md
-recursive-include nirmaha *.png
-recursive-include nirmaha *.py
-recursive-include nirmaha *.svg
-recursive-include nirmaha *.txt
-recursive-exclude nirmaha *.pyc
+recursive-include nirmana *.css
+recursive-include nirmana *.csv
+recursive-include nirmana *.html
+recursive-include nirmana *.ico
+recursive-include nirmana *.js
+recursive-include nirmana *.json
+recursive-include nirmana *.md
+recursive-include nirmana *.png
+recursive-include nirmana *.py
+recursive-include nirmana *.svg
+recursive-include nirmana *.txt
+recursive-exclude nirmana *.pyc

@@ -1,0 +1,39 @@
+[project]
+name = "nirmaha"
+authors = [
+    { name = "Rajesh Medampudi", email = "rajesh@simbotix.com"}
+]
+description = "Equipment Rental Management System"
+requires-python = ">=3.10"
+readme = "README.md"
+dynamic = ["version"]
+
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.module]
+name = "nirmaha"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "F",
+    "E",
+    "W",
+    "I",
+    "UP",
+    "B",
+]
+ignore = [
+    "B017",
+    "E501",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "tab"
+docstring-code-format = true

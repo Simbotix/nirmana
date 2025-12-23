@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include nirmaha *.css
+recursive-include nirmaha *.csv
+recursive-include nirmaha *.html
+recursive-include nirmaha *.ico
+recursive-include nirmaha *.js
+recursive-include nirmaha *.json
+recursive-include nirmaha *.md
+recursive-include nirmaha *.png
+recursive-include nirmaha *.py
+recursive-include nirmaha *.svg
+recursive-include nirmaha *.txt
+recursive-exclude nirmaha *.pyc

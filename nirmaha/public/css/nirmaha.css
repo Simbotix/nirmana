@@ -1,0 +1,62 @@
+/* Nirmaha - Equipment Rental Management System
+ * Custom styles for the Nirmaha app
+ */
+
+:root {
+  --nirmaha-primary: #2c5aa0;
+  --nirmaha-secondary: #6c757d;
+  --nirmaha-success: #28a745;
+  --nirmaha-warning: #ffc107;
+  --nirmaha-danger: #dc3545;
+}
+
+/* Equipment status badges */
+.equipment-available {
+  background-color: var(--nirmaha-success);
+  color: white;
+}
+
+.equipment-rented {
+  background-color: var(--nirmaha-warning);
+  color: #333;
+}
+
+.equipment-maintenance {
+  background-color: var(--nirmaha-danger);
+  color: white;
+}
+
+/* Customer portal styles */
+.nirmaha-portal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.equipment-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.equipment-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Booking calendar */
+.booking-calendar {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .rental-agreement {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+}

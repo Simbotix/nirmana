@@ -182,23 +182,40 @@ Add:
 
 ## Cost Estimate
 
-### Friends & Family Rate (30% discount)
+### Family Price (Fixed)
 
-Standard rate: $100/hr → **Family rate: $70/hr**
+| Package | What's Included | Price |
+|---------|-----------------|-------|
+| **Full Platform** | Complete Nirmaha marketplace with all features | **₹1,00,000** |
 
-| Scope | Hours | Cost |
-|-------|-------|------|
-| MVP | 100-120 | **$7,000-8,400** |
-| Full | 170-220 | **$11,900-15,400** |
+This includes:
+- All DocTypes and data model
+- Complete booking system
+- Stripe payments + Stripe Connect (lister payouts)
+- Lister dashboard
+- Customer portal
+- Messaging system
+- Wishlist / favorites
+- South Indian festive theme
+- Deployment to staging + production
 
-### Recommended Package
+### Payment Terms
 
-| Package | What's Included | Hours | Price |
-|---------|-----------------|-------|-------|
-| **MVP** | Listings, booking, Stripe payments, basic theme | 110 | **$7,700** |
-| **Full** | MVP + Stripe Connect, messaging, wishlist, polished theme | 195 | **$13,650** |
+| Milestone | Amount | When |
+|-----------|--------|------|
+| Project Start | ₹50,000 | Upfront |
+| Delivery | ₹50,000 | On completion |
 
-*Payment terms: 50% upfront, 50% on delivery*
+### What This Means
+
+| Metric | Value |
+|--------|-------|
+| Estimated hours | 170-220 |
+| Effective rate | ₹455-590/hr |
+| Market rate | ₹5,810/hr |
+| **Discount** | **~90% off** |
+
+*This is family pricing. Not available for external clients.*
 
 ---
 

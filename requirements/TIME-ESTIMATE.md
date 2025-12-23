@@ -186,7 +186,7 @@ Add:
 
 | Package | What's Included | Price |
 |---------|-----------------|-------|
-| **Full Platform** | Complete Nirmaha marketplace with all features | **₹1,00,000** |
+| **Full Platform** | Complete Nirmaha marketplace with all features | **₹2,00,000** |
 
 This includes:
 - All DocTypes and data model
@@ -203,17 +203,17 @@ This includes:
 
 | Milestone | Amount | When |
 |-----------|--------|------|
-| Project Start | ₹50,000 | Upfront |
-| Delivery | ₹50,000 | On completion |
+| Project Start | ₹1,00,000 | Upfront |
+| Delivery | ₹1,00,000 | On completion |
 
 ### What This Means
 
 | Metric | Value |
 |--------|-------|
 | Estimated hours | 170-220 |
-| Effective rate | ₹455-590/hr |
+| Effective rate | ₹910-1,175/hr |
 | Market rate | ₹5,810/hr |
-| **Discount** | **~90% off** |
+| **Discount** | **~80% off** |
 
 *This is family pricing. Not available for external clients.*
 
